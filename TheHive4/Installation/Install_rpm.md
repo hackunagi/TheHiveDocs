@@ -68,13 +68,21 @@ By default, data is stored in `/var/lib/cassandra`.
 
 ### Configuration
 
-Start by changing the `cluster_name` with `thp`. Run the command `sqlsh`: 
+Start by enabling and starting Cassandra Service.
+
+```bash
+systemctl daemon-reload
+service cassandra start
+chkconfig cassandra on
+```
+
+Start by changing the `cluster_name` with `thp`. Run the command `cqlsh`: 
 
 ```bash
 UPDATE system.local SET cluster_name = 'thp' where key='local';
 ```
 
-Then run: 
+Leave cqlsh and then run: 
 
 ```
 nodetool flush
@@ -99,16 +107,6 @@ data_file_directories:
 commitlog_directory: '/var/lib/cassandra/commitlog'
 saved_caches_directory: '/var/lib/cassandra/saved_caches'
 hints_directory: '/var/lib/cassandra/hints'
-```
-
-
-
-Run the service and ensure it restart after a reboot:
-
-```bash
-systemctl daemon-reload
-service cassandra start
-chkconfig cassandra on
 ```
 
 By default Cassandra listens on `7000/tcp` (inter-node), `9042/tcp` (client).
