@@ -76,7 +76,7 @@ service cassandra start
 chkconfig cassandra on
 ```
 
-Start by changing the `cluster_name` with `thp`. Run the command `cqlsh`: 
+Change the `cluster_name` to `thp`. Run the command `cqlsh`: 
 
 ```bash
 UPDATE system.local SET cluster_name = 'thp' where key='local';
